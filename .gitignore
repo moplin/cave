@@ -4,3 +4,4 @@ assets/*
 /runtime/.gitignore
 /vendor
 /.idea
+composer.lock
