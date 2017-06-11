@@ -5,3 +5,5 @@ assets/*
 /vendor
 /.idea
 composer.lock
+/config/db.php
+/config/config.php

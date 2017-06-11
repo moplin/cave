@@ -2,6 +2,7 @@
 
 $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
+$cave_conf = require(__DIR__ . '/config.php');
 
 $config = [
     'id' => 'basic',
@@ -10,7 +11,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'w5oN9iyHH9EEqTDrMZkMBsx71ILeyrwW',
+            'cookieValidationKey' => $cave_conf['cookieValidationKey'],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -24,9 +25,7 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
+            'transport'=> $cave_conf['mail_transport_array'],
             'useFileTransport' => true,
         ],
         'log' => [
@@ -39,14 +38,13 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+        //'mongodb' => $cave_conf['mongodb'],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
